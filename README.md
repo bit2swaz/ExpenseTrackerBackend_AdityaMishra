@@ -19,8 +19,8 @@ A robust backend API for tracking personal expenses, built with Node.js, Express
 
 1. **Clone the repository:**
    ```bash
-   git clone <repo-url>
-   cd ExpenseTrackerBackend_<YourName>
+   git clone https://github.com/bit2swaz/ExpenseTrackerBackend_AdityaMishra.git
+   cd ExpenseTrackerBackend_AdityaMishra
    ```
 
 2.  **Install Dependencies:**
