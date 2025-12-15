@@ -1,0 +1,93 @@
+{
+	"info": {
+		"name": "Expense Tracker API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": { "language": "json" }
+							}
+						},
+						"url": { "raw": "http://localhost:5000/api/register", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "register"] }
+					}
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": ["var jsonData = pm.response.json();", "pm.environment.set(\"token\", jsonData.token);"],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": { "language": "json" }
+							}
+						},
+						"url": { "raw": "http://localhost:5000/api/login", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "login"] }
+					}
+				}
+			]
+		},
+		{
+			"name": "Expenses",
+			"item": [
+				{
+					"name": "Get All Expenses",
+					"request": {
+						"method": "GET",
+						"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+						"url": { "raw": "http://localhost:5000/api/expenses", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "expenses"] }
+					}
+				},
+				{
+					"name": "Add Expense",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Lunch\",\n    \"amount\": 250,\n    \"category\": \"Food\",\n    \"date\": \"2023-10-27\"\n}",
+							"options": {
+								"raw": { "language": "json" }
+							}
+						},
+						"url": { "raw": "http://localhost:5000/api/expenses", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "expenses"] }
+					}
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "Monthly Report",
+					"request": {
+						"method": "GET",
+						"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+						"url": { "raw": "http://localhost:5000/api/reports/monthly?month=10&year=2023", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "reports", "monthly"], "query": [{ "key": "month", "value": "10" }, { "key": "year", "value": "2023" }] }
+					}
+				}
+			]
+		}
+	]
+}
